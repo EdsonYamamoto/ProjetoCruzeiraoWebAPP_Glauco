@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		>
+	<h:head>
+		<meta charset="UTF-8" />
+		 
+	    <link rel="stylesheet" type="text/css" media="screen" href="..\css\form.css"/>
+	    
+	</h:head>
+	<h:body>
+		<div id ="form">
+		
+			<h:form method="post" id="formCadastroCarrinhoExterior">
+			
+            		<fieldset><LEGEND>Produtos Exterior</LEGEND>
+	            		
+		            	<p><p:outputLabel for="cProdutoExterior"> Produto exterior: </p:outputLabel></p>
+						<p><p:selectOneMenu id="cProdutoExterior" 
+											value="#{itemMB.item.produto}" 
+											required="true"
+							 				converter="produtoMercadoExternoConverter">
+								 					
+		            		<f:selectItem itemLabel="Select One" itemValue="" />
+		            		<f:selectItems value="#{produtoMercadoExternoMB.produtos}"  var="pro" itemValue="#{pro}" itemLabel="#{pro.nome}"/>
+		            	</p:selectOneMenu></p>
+
+				<p>
+					<p:outputLabel for="cQuantidade">Quantidade</p:outputLabel>
+					<h:inputText type="number" name="tQuantidade" id="cQuantidade"
+						size="35" maxlength="40" placeholder="0"
+						value="#{itemMB.item.quantidade}">
+					</h:inputText>
+				</p>
+				<p:commandButton 	value="Salvar"
+	            					action="#{itemMB.salvar()}"
+					                update=":formCadastroCarrinhoExterior"
+						/>
+						
+						
+            		</fieldset>
+            		<p:dataTable var="it" value="#{itemMB.itens}"
+					             editable="true" editMode="cell"
+					>
+						<p:column>
+							   <p:cellEditor>
+					                  <f:facet name="output"><p:outputLabel value="#{it.produto}"/></f:facet>
+					                  <f:facet name="input"><p:inputText    value="#{it.produto}" style="width:96%"/></f:facet>
+					           </p:cellEditor>
+						</p:column>
+						
+						<p:column>
+							   <p:cellEditor>
+					                  <f:facet name="output"><p:outputLabel value="#{it.quantidade}"/></f:facet>
+					                  <f:facet name="input"><p:inputText    value="#{it.quantidade}" style="width:96%"/></f:facet>
+					           </p:cellEditor>
+						</p:column>
+						
+					</p:dataTable>
+			</h:form>
+			
+			
+			<h:form method="post" id="formCadastroCarrinhoInterior">
+
+            		<fieldset><legend>Produtos Interior</legend>
+	            			
+		            	<p><label for="cProdutoInterior"> Produto interior: </label>
+						<p:selectOneMenu 	id="cProdutoInterior" 
+											value="#{itemMB.item.produto}" 
+											required="true"
+							 				converter="produtoMercadoInternoConverter">
+								 					
+		            		<f:selectItem itemLabel="Select One" itemValue="" />
+		            		<f:selectItems value="#{produtoMercadoInternoMB.produtos}"  var="prod" itemValue="#{prod}" itemLabel="#{prod.nome}"/>
+		            	</p:selectOneMenu></p>
+		            	<p><label for="cQuantidade">Quantidade</label>
+		            	<h:inputText type="number" name="tQuantidade" id="cQuantidade" size="35" maxlength="40" placeholder="0" value="#{itemMB.item.quantidade}" var="qtd"> </h:inputText></p>
+	            		<p:commandButton 	value="Salvar"
+					                 		action="#{itemMB.salvar()}"
+					                 		update=":formCadastroCarrinhoInterior"  
+						/>
+            		</fieldset>
+            		<p:dataTable var="it" value="#{itemMB.itens}"
+					             editable="true" editMode="cell"
+					>
+						<p:column>
+							   <p:cellEditor>
+					                  <f:facet name="output"><p:outputLabel value="#{it.produto}"/></f:facet>
+					                  <f:facet name="input"><p:inputText    value="#{it.produto}" style="width:96%"/></f:facet>
+					           </p:cellEditor>
+						</p:column>
+						
+						<p:column>
+							   <p:cellEditor>
+					                  <f:facet name="output"><p:outputLabel value="#{it.quantidade}"/></f:facet>
+					                  <f:facet name="input"><p:inputText    value="#{it.quantidade}" style="width:96%"/></f:facet>
+					           </p:cellEditor>
+						</p:column>
+						
+					</p:dataTable>
+			</h:form>
+			
+			 
+			<h:form method="post" id="formCadastroPedido">
+					<fieldset id="usuario"><legend>Formulario Cadastro Pedido</legend>
+						<p><label for="cCodigo"> Codigo: </label><h:inputText type="number" name="tCodigo" id="cCodigo" size="35" maxlength="40" placeholder="Name" value="#{pedidoMB.pedido.id}"> </h:inputText></p>
+						 
+						<p><label for="cCliente"> Cliente: </label>
+						<p:selectOneMenu 	id="cCliente" 
+											value="#{pedidoMB.pedido.cliente}" 
+											required="true"
+						 					converter="clienteConverter">
+						 					
+            				<f:selectItem itemLabel="Select One" itemValue="" />
+            				<f:selectItems value="#{clienteMB.clientes}"  var="cli" itemValue="#{cli}" itemLabel="#{cli.nome}"/>
+            			</p:selectOneMenu></p>
+            			
+							<p:outputLabel for="inline" value="Data Compra" />
+        					<p:calendar id="inline" value="#{pedidoMB.pedido.data}" mode="inline" />
+						<p:commandButton value="Salvar"
+					                 action="#{pedidoMB.salvar(itemMB)}"
+					                 update=":formCadastroPedido" 
+						/>
+
+					</fieldset>
+					 
+					<p:dataScroller value="#{pedidoMB.pedidos}" var="ped" chunkSize="10"> 
+				        <f:facet name="header">
+				            Pedidos
+				        </f:facet>
+				 
+				        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+				 
+				            <p:outputPanel>
+				            	<fieldset>
+					                <h:panelGrid columns="2" cellpadding="5">
+					                	
+					                    <h:outputText value="Id:" />
+					                    <h:outputText value="#{ped.id}" style="font-weight: bold"/>
+					 
+					 					
+					                    <h:outputText value="Data:" />
+					                    <h:outputText value="#{ped.data}" style="font-weight: bold"/>
+					 
+					                </h:panelGrid>
+					                <p:dataScroller value="#{ped.getCliente()}" var="cli" chunkSize="10">
+						                    <f:facet name="header">
+					            			Cliente
+					        				</f:facet>
+					        				<h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+					        					<h:outputText value="Codigo:" />
+					                    		<h:outputText value="#{cli.codigo}" style="font-weight: bold"/>
+					        					<h:outputText value="Nome:" />
+					                    		<h:outputText value="#{cli.nome}" style="font-weight: bold"/>
+					        					<h:outputText value="Telefone:" />
+					                    		<h:outputText value="#{cli.telefone}" style="font-weight: bold"/>
+					        					<h:outputText value="Status:" />
+					                    		<h:outputText value="#{cli.status}" style="font-weight: bold"/>
+					        				</h:panelGrid>
+					                    </p:dataScroller>
+					 					
+					                    <p:dataScroller value="#{ped.getItem()}" var="it" chunkSize="10">
+						                    <f:facet name="header">
+					            			Itens
+					        				</f:facet><fieldset>
+					        				<h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+					                    		
+					        					<h:outputText value="ID:" />
+					                    		<h:outputText value="#{it.produto.codigo}" style="font-weight: bold"/>	
+					                    		
+					        					<h:outputText value="Nome:" />
+					                    		<h:outputText value="#{it.produto.nome}" style="font-weight: bold"/>	
+					                    		
+					        					<h:outputText value="Categoria:" />
+					                    		<h:outputText value="#{it.produto.categoria}" style="font-weight: bold"/>	
+					                    		
+					        					<h:outputText value="Preco:" />
+					                    		<h:outputText value="#{it.produto.preco}" style="font-weight: bold"/>
+					                    		
+					        					<h:outputText value="Imposto:" />
+					                    		<h:outputText value="#{it.produto.imposto}" style="font-weight: bold"/>	
+					                    		
+					        					<h:outputText value="Quantidade:" />
+					                    		<h:outputText value="#{it.quantidade}" style="font-weight: bold"/>
+					        				</h:panelGrid>
+					        				</fieldset>
+					                    </p:dataScroller>
+					 					
+					        				<h:panelGrid columns="2" cellpadding="5">
+							                	
+							                    <h:outputText value="Total:" />
+							                    <h:outputText value="#{ped.calculaTotal()}" style="font-weight: bold"/>
+							 
+							                    <h:outputText value="Imposto Total:" />
+							                    <h:outputText value="#{ped.calculaImposto()}" style="font-weight: bold"/>
+							 					
+					 
+					                		</h:panelGrid>
+								</fieldset>
+				            </p:outputPanel>
+				        </h:panelGrid>
+		    		</p:dataScroller>
+				</h:form>
+			</div>
+	</h:body>
+</html>

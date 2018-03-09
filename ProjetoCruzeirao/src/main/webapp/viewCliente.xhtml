@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+      	>
+      	<h:head>
+    
+	    <link rel="stylesheet" type="text/css" media="screen" href="..\css\form.css"/>
+	
+	    <title>Title of Page</title>
+    	</h:head>
+    <h:body>
+		<div id ="form">
+			<h:form method="post" id="formViewCliente">
+					
+					<p:dataTable var="cli" value="#{clienteMB.clientes}"
+					             editable="true" editMode="cell"
+					>
+						<p:column value="id"  headerText="ID">
+							   <p:cellEditor>
+					                  <f:facet name="output"><p:outputLabel value="#{cli.codigo}"/></f:facet>
+					                  <f:facet name="input"><p:inputText    value="#{cli.codigo}" style="width:96%"/></f:facet>
+					           </p:cellEditor>
+						</p:column>
+						
+						<p:column value="nome"  headerText="Nome">
+							   <p:cellEditor>
+					                  <f:facet name="output"><p:outputLabel value="#{cli.nome}"/></f:facet>
+					                  <f:facet name="input"><p:inputText    value="#{cli.nome}" style="width:96%"/></f:facet>
+					           </p:cellEditor>
+						   
+						</p:column>
+						
+						<p:column value="endereco"  headerText="End">
+							   <p:cellEditor>
+					                  <f:facet name="output"><p:outputLabel value="#{cli.endereco}"/></f:facet>
+					                  <f:facet name="input"><p:inputText    value="#{cli.endereco}" style="width:96%"/></f:facet>
+					           </p:cellEditor>
+						</p:column>
+						
+						<p:column value="telefone"   headerText="Tel">
+							   <p:cellEditor>
+					                  <f:facet name="output"><p:outputLabel value="#{cli.telefone}"/></f:facet>
+					                  <f:facet name="input"><p:inputText    value="#{cli.telefone}" style="width:96%"/></f:facet>
+					           </p:cellEditor>
+						</p:column>
+
+						<p:column value="status"   headerText="Stat">
+							   <p:cellEditor>
+					                  <f:facet name="output"><p:outputLabel value="#{cli.status}"/></f:facet>
+					                  <f:facet name="input"><p:inputText    value="#{cli.status}" style="width:96%"/></f:facet>
+					           </p:cellEditor>
+						</p:column>
+						<p:column value="email"   headerText="Mail">
+							   <p:cellEditor>
+					                  <f:facet name="output"><p:outputLabel value="#{cli.email}"/></f:facet>
+					                  <f:facet name="input"><p:inputText    value="#{cli.email}" style="width:96%"/></f:facet>
+					           </p:cellEditor>
+						   
+						</p:column>
+												
+						<p:column value="datanascimento"   headerText="DatNasc">
+							   <p:cellEditor>
+					                  <f:facet name="output"><p:outputLabel value="#{cli.dataNascimento}"/></f:facet>
+					                  <f:facet name="input"><p:inputText    value="#{cli.dataNascimento}" style="width:96%"/></f:facet>
+					           </p:cellEditor>
+						</p:column>
+						
+						<p:column value="remover" >
+						
+						     <p:commandLink value="Excluir" action="#{clienteMB.remover(cli)}" update="formViewCliente"></p:commandLink>
+						</p:column>
+					
+					</p:dataTable>
+				</h:form>
+			</div>
+	</h:body>
+</html>

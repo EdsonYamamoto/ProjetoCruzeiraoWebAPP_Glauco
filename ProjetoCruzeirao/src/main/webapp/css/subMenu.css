@@ -1,0 +1,45 @@
+	nav#menu {
+		display = block;	
+	}
+	
+	nav#menu ul{
+		list-style: none;
+		position: relative;
+		text-transform: uppercase;
+		top:30px;
+		left:-50px;
+		
+	}
+
+	nav#menu li{
+		display: inline-block;
+		background-color: #eeeeee;
+		padding: 10px;
+		margin: 0px;
+		transition: background-color 1s;
+	}
+	
+	nav#menu li:hover{
+		background-color: #808080;
+	}
+	
+	nav#menu h1{
+		display:none;
+	}
+	
+	nav#menu a {
+		color: #000000;
+		text-decoration: none;
+	}
+	
+	nav#menu a:hover {
+		color: #ffffff;
+	}
+	
+	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		>
+	<h:head>
+		<meta charset="UTF-8" />
+		 
+	    <link rel="stylesheet" type="text/css" media="screen" href="..\css\form.css"/>
+	    
+	</h:head>
+	<h:body>
+		<div id ="form">
+			<h:form method="post" id="formCadastroCliente">
+					<fieldset id="usuario">
+					<legend>Formulario cadastro Cliente</legend>
+						<p><p:outputLabel for="cCodigo"> Codigo: </p:outputLabel><h:inputText type="number" name="tCodigo" id="cCodigo" size="35" maxlength="40" placeholder="Name" value="#{clienteMB.cliente.codigo}"> </h:inputText></p>
+						<p><p:outputLabel for="cNome"> Name: </p:outputLabel><h:inputText type="text" name="tNome" id="cNome" size="35" maxlength="40" placeholder="Name" value="#{clienteMB.cliente.nome}"> </h:inputText></p>
+						<p><p:outputLabel for="cEndereco"> Endereço: </p:outputLabel><h:inputText type="text" name="tEndereco" id="cEndereco" size="35" maxlength="40" placeholder="rua / cidade / estado" value="#{clienteMB.cliente.endereco}"> </h:inputText></p>
+						<p><p:outputLabel for="cTelefone"> Telefone: </p:outputLabel><h:inputText type="tel" name="tTelefone" id="cTelefone" size="35" maxlength="40" placeholder="15 XXXXX-XXXX" value="#{clienteMB.cliente.telefone}"> </h:inputText></p>
+						<p><p:outputLabel for="cStatus"> Status: </p:outputLabel><h:inputText type="text" name="tStatus" id="cStatus" size="35" maxlength="40" placeholder="bom / medio / ruim" value="#{clienteMB.cliente.status}"> </h:inputText></p>
+						<p><p:outputLabel for="cMail"> E-mail: </p:outputLabel><h:inputText type="email" name="tMail" id="cMail" size="35" maxlength="40" placeholder="XXXXXXXXXXXXXX@XXXX.com" value="#{clienteMB.cliente.email}"> </h:inputText></p>
+							<p:outputLabel for="inline" value="Ano nascimento" />
+        					<p:calendar id="inline" value="#{clienteMB.cliente.dataNascimento}" mode="inline" />
+						<p:commandButton value="Salvar"
+					                 action="#{clienteMB.salvar()}"
+					                 update=":formCadastroCliente"  
+					/>
+					</fieldset> 
+					<p:dataScroller value="#{clienteMB.clientes}" var="cliente" chunkSize="10">
+				        <f:facet name="header">
+				            Clientes
+				        </f:facet>
+				 
+				        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+				 
+				            <p:outputPanel>
+				            	<fieldset>
+					                <h:panelGrid columns="2" cellpadding="5">
+					                	
+					                    <h:outputText value="Id:" />
+					                    <h:outputText value="#{cliente.codigo}" style="font-weight: bold"/>
+					 
+					                    <h:outputText value="Nome:" />
+					                    <h:outputText value="#{cliente.nome}" style="font-weight: bold"/>
+					 
+					                    <h:outputText value="Telefone:" />
+					                    <h:outputText value="#{cliente.telefone}" style="font-weight: bold"/>
+					 
+					                    <h:outputText value="Endereço:" />
+					                    <h:outputText value="#{cliente.endereco}" style="font-weight: bold"/>
+					 
+					                    <h:outputText value="Status:" />
+					                    <h:outputText value="#{cliente.status}" style="font-weight: bold"/>
+					 
+					                    <h:outputText value="DataNascimento:" />
+					                    <h:outputText value="#{cliente.dataNascimento}" style="font-weight: bold"/>
+					                    
+					                </h:panelGrid>
+								</fieldset>
+				            </p:outputPanel>
+				        </h:panelGrid>
+		    		</p:dataScroller>
+				</h:form>
+			</div>
+	</h:body>
+</html>

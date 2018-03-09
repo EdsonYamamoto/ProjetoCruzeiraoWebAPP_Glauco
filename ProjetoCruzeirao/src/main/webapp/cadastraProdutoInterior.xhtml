@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		>
+	<h:head>
+		<meta charset="UTF-8" />
+		 
+	    <link rel="stylesheet" type="text/css" media="screen" href="..\css\form.css"/>
+	    
+	</h:head>
+	<h:body>
+		<div id ="form">
+			<h:form method="post" id="formCadastroProdutoInterior">
+					<fieldset id="usuario">
+						<legend>Formulario Cadastro Produto para Interior</legend>
+						<p><p:outputLabel for="cCodigo"> Codigo: </p:outputLabel><h:inputText type="number" name="tCodigo" id="cCodigo" size="35" maxlength="40" placeholder="Name" value="#{produtoMercadoInternoMB.produto.codigo}"> </h:inputText></p>
+						<p><p:outputLabel for="cNome"> Name: </p:outputLabel><h:inputText type="text" name="tNome" id="cNome" size="35" maxlength="40" placeholder="Name" value="#{produtoMercadoInternoMB.produto.nome}"> </h:inputText></p>
+						
+						<p><p:outputLabel for="cCategoria"> Categoria: </p:outputLabel>
+						<p:selectOneMenu 	id="cCategoria" 
+											value="#{produtoMercadoInternoMB.produto.categoria}" 
+											required="true"
+						 					converter="categoriaConverter">
+						 					
+            				<f:selectItem itemLabel="Select One" itemValue="" />
+            				<f:selectItems value="#{categoriaMB.categorias}"  var="cat" itemValue="#{cat}" itemLabel="#{cat.descricao}"/>
+        					<!--<f:converter converterId="cCategoriaConverter" />-->
+        					
+        				</p:selectOneMenu></p>
+						<!--
+						<p><label for="cCategoria"> Categoria: </label><h:inputText type="text" name="tCategoria" id="cCategoria" size="35" maxlength="40" placeholder="rua / cidade / estado" value="#{produtoMercadoInternoMB.produto.categoria}"> </h:inputText></p>
+						-->
+						<p><p:outputLabel for="cPreco"> Preço: </p:outputLabel><h:inputText type="tel" name="tPreco" id="cPreco" size="35" maxlength="40" placeholder="15 XXXXX-XXXX" value="#{produtoMercadoInternoMB.produto.preco}"> </h:inputText></p>
+						<p><p:outputLabel for="cImposto"> Imposto: </p:outputLabel><h:inputText type="tel" name="tImposto" id="cImposto" size="35" maxlength="40" placeholder="15 XXXXX-XXXX" value="#{produtoMercadoInternoMB.produto.imposto}"> </h:inputText></p>
+						<p><p:outputLabel for="cIncentivo"> Incentivo: </p:outputLabel><h:inputText type="tel" name="tIncentivo" id="cIncentivo" size="35" maxlength="40" placeholder="15 XXXXX-XXXX" value="#{produtoMercadoInternoMB.produto.incentivo}"> </h:inputText></p>
+						
+						
+						
+						<p:commandButton value="Salvar"
+					                 action="#{produtoMercadoInternoMB.salvar()}"
+					                 update=":formCadastroProdutoInterior"  
+					/>
+						
+					</fieldset>
+					<p:dataScroller value="#{produtoMercadoInternoMB.produtos}" var="pro" chunkSize="10">
+				        <f:facet name="header">
+				            Produto Mercado Exterior
+				        </f:facet>
+				 
+				        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+				 
+				            <p:outputPanel>
+				            	<fieldset>
+					                <h:panelGrid columns="2" cellpadding="5">
+					                	
+					                    <h:outputText value="Id:" />
+					                    <h:outputText value="#{pro.codigo}" style="font-weight: bold"/>
+					 
+					                    <h:outputText value="Nome:" />
+					                    <h:outputText value="#{pro.nome}" style="font-weight: bold"/>
+					 
+					                    <h:outputText value="Categoria:" />
+					                    <h:outputText value="#{pro.categoria}" style="font-weight: bold"/>
+					 
+					                    <h:outputText value="Preço:" />
+					                    <h:outputText value="#{pro.preco}" style="font-weight: bold"/>
+					 
+					                    <h:outputText value="Imposto:" />
+					                    <h:outputText value="#{pro.imposto}" style="font-weight: bold"/>
+					 
+					                    <h:outputText value="Destino:" />
+					                    <h:outputText value="#{pro.incentivo}" style="font-weight: bold"/>
+					                    
+					                </h:panelGrid>
+								</fieldset>
+				            </p:outputPanel>
+				        </h:panelGrid>
+		    		</p:dataScroller>
+					
+					
+			    	
+				</h:form>
+			</div>
+	</h:body>
+</html>

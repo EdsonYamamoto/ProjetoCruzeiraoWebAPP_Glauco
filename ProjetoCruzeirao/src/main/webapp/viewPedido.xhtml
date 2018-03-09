@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+      	>
+      	<h:head>
+    
+	    <link rel="stylesheet" type="text/css" media="screen" href="..\css\form.css"/>
+	
+	    <title>Title of Page</title>
+    	</h:head>
+    <h:body>
+		<div id ="form">
+			<h:form method="post" id="formViewPedido">
+					<p:dataTable var="ped" value="#{pedidoMB.pedidos}"
+					             editable="true" editMode="cell"
+					>
+					
+						<p:column headerText="ID">
+							   <p:cellEditor>
+					                  <f:facet name="output"><p:outputLabel value="#{ped.id}"/></f:facet>
+					                  <f:facet name="input"><p:inputText    value="#{ped.id}" style="width:96%"/></f:facet>
+					           </p:cellEditor>
+						</p:column>
+						<p:column headerText="Cliente">
+								   <p:cellEditor>
+						                  <f:facet name="output"><p:outputLabel value="#{ped.cliente}"/></f:facet>
+						                  <f:facet name="input"><p:inputText    value="#{ped.cliente}" style="width:96%"/></f:facet>
+						           </p:cellEditor>
+							</p:column>
+						<p:dataTable var="cli" value="#{ped.getCliente()}"
+					     	        editable="true" editMode="cell"
+						>
+							<p:column headerText="Nome">
+								   <p:cellEditor>
+						                  <f:facet name="output"><p:outputLabel value="#{cli.nome}"/></f:facet>
+						                  <f:facet name="input"><p:inputText    value="#{cli.nome}" style="width:96%"/></f:facet>
+						           </p:cellEditor>
+							   
+							</p:column>
+						</p:dataTable>
+						<p:column headerText="Carrinho">
+							   <p:cellEditor>
+					                  <f:facet name="output"><p:outputLabel value="#{ped.item}"/></f:facet>
+					                  <f:facet name="input"><p:inputText    value="#{ped.item}" style="width:96%"/></f:facet>
+					           </p:cellEditor>
+						</p:column>
+						<!-- 
+						<p:dataScroller value="#{ped.getCliente()}" var="cli" chunkSize="10">
+						                    <f:facet name="header">
+					            			Cliente
+					        				</f:facet>
+					        				<h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+					        					<h:outputText value="Codigo:" />
+					                    		<h:outputText value="#{cli.codigo}" style="font-weight: bold"/>
+					        					<h:outputText value="Nome:" />
+					                    		<h:outputText value="#{cli.nome}" style="font-weight: bold"/>
+					        					<h:outputText value="Telefone:" />
+					                    		<h:outputText value="#{cli.telefone}" style="font-weight: bold"/>
+					        					<h:outputText value="Status:" />
+					                    		<h:outputText value="#{cli.status}" style="font-weight: bold"/>
+					        				</h:panelGrid>
+					                    </p:dataScroller>
+					 					
+					                    <p:dataScroller value="#{ped.getItem()}" var="it" chunkSize="10">
+						                    <f:facet name="header">
+					            			Itens
+					        				</f:facet><fieldset>
+					        				<h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+					                    		
+					        					<h:outputText value="ID:" />
+					                    		<h:outputText value="#{it.produto.codigo}" style="font-weight: bold"/>	
+					                    		
+					        					<h:outputText value="Nome:" />
+					                    		<h:outputText value="#{it.produto.nome}" style="font-weight: bold"/>	
+					                    		
+					        					<h:outputText value="Categoria:" />
+					                    		<h:outputText value="#{it.produto.categoria}" style="font-weight: bold"/>	
+					                    		
+					        					<h:outputText value="Preco:" />
+					                    		<h:outputText value="#{it.produto.preco}" style="font-weight: bold"/>
+					                    		
+					        					<h:outputText value="Imposto:" />
+					                    		<h:outputText value="#{it.produto.imposto}" style="font-weight: bold"/>	
+					                    		
+					        					<h:outputText value="Quantidade:" />
+					                    		<h:outputText value="#{it.quantidade}" style="font-weight: bold"/>
+					        				</h:panelGrid>
+					        				</fieldset>
+					                    </p:dataScroller>
+					                    -->
+						<p:column headerText="Data">
+							   <p:cellEditor>
+					                  <f:facet name="output"><p:outputLabel value="#{ped.data}"/></f:facet>
+					                  <f:facet name="input"><p:inputText    value="#{ped.data}" style="width:96%"/></f:facet>
+					           </p:cellEditor>
+						</p:column>
+
+						<p:column>
+						     <p:commandLink value="Excluir" action="#{pedidoMB.remover(ped)}" update="formViewPedido"></p:commandLink>
+						</p:column>
+					
+					</p:dataTable>
+			</h:form>
+		</div>
+	</h:body>
+</html>

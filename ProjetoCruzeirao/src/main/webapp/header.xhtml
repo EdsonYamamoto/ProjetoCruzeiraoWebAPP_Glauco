@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 	xmlns="http://www.w3.org/1999/xhtml"   
+    	xmlns:h="http://java.sun.com/jsf/html"
+      	xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui"
+		
+      	>   
+      	<h:head>
+    
+	    <link rel="stylesheet" type="text/css" media="screen" href="..\css\menu.css"/>
+	
+	    <title>Title of Page</title>
+    	</h:head>
+    <body>
+		<ui:composition>
+			<h1>Vendedora de alimentos</h1>
+			<h2>Supermercado</h2>
+			<!-- 
+			<nav id="menu">
+				<h1>Menu Principal</h1>
+				<ul type="disc">
+					<b>
+						<li><a href="layout.xhtml" target="janela">Home</a></li>
+						<li><a href="menuCliente.xhtml" target="menu">Clientes</a></li>
+						<li><a href="menuProduto.xhtml" target="menu">Produtos</a></li>
+						<li><a href="menuCategoria.xhtml" target="menu">Categorias</a></li>
+						<li><a href="menuPedido.xhtml" target="menu">Pedidos</a></li>
+					</b>
+				</ul>
+			</nav>
+  			-->
+  			
+			<p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:20px">
+				<p:menuitem value="Home" url="layout.xhtml" target="janela"/>
+			    <p:submenu label="Clientes" icon="ui-icon-pencil">
+			        <p:column>
+			            <p:submenu label="Cliente">
+			                <p:menuitem value="Cadastrar" url="cadastraCliente.xhtml" target="janela"/>
+			                <p:menuitem value="Listar" url="viewCliente.xhtml" target="janela"/>
+			            </p:submenu>
+			        </p:column>
+			 
+			    </p:submenu>
+			 	
+			    <p:submenu label="Categoria" icon="ui-icon-pencil">
+			        <p:column>
+			            <p:submenu label="Categoria">
+			                <p:menuitem value="Cadastrar" url="cadastraCategoria.xhtml" target="janela"/>
+			                <p:menuitem value="listar" url="viewCategoria.xhtml" target="janela"/>
+			            </p:submenu>
+			        </p:column>
+			 
+			    </p:submenu>
+			 
+			    <p:submenu label="Produto" icon="ui-icon-pencil">
+			        <p:column>
+			            <p:submenu label="Produto Exterior">
+			                <p:menuitem value="Cadastrar" url="cadastraProdutoExterior.xhtml" target="janela"/>
+			                <p:menuitem value="Listar" url="viewProdutoExterior.xhtml" target="janela"/>
+			            </p:submenu>
+			            <p:submenu label="Produto Interior">
+			                <p:menuitem value="Cadastrar" url="cadastraProdutoInterior.xhtml" target="janela"/>
+			                <p:menuitem value="Listar" url="viewProdutoInterior.xhtml" target="janela"/>
+			            </p:submenu>
+			        </p:column>
+			 
+			    </p:submenu>
+			    <p:submenu label="Pedido" icon="ui-icon-pencil">
+			        <p:column>
+			            <p:submenu label="Pedido">
+			                <p:menuitem value="Cadastrar" url="cadastraPedido.xhtml" target="janela"/>
+			                <p:menuitem value="Listar" url="viewPedido.xhtml" target="janela"/>
+			            </p:submenu>
+			        </p:column>
+			 
+			    </p:submenu>
+			    <p:menuitem value="Quit" url="http://www.primefaces.org" icon="ui-icon-close" />
+			</p:megaMenu>
+	    </ui:composition>
+    </body>
+</html>
